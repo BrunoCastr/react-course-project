@@ -1,35 +1,45 @@
 console.log("App.js is running")
 
+// if statements
+// ternary operators
+// logical and operator
+
 // JSX - JavaScript XML
 var application = {
     title: 'Askaban',
-    subtitle: "You don't know nothing!"
+    subtitle: "You don't know nothing!",
+    options: ['One', 'Two']
 }
 
 var template = (
     <div>
         <h1>{application.title}</h1>
-        <p>{application.subtitle}</p>
+        {application.subtitle && <p>{application.subtitle}</p>}
+        <p>{(application.options.length) > 0 ? 'Here are your options' : 'No options'}</p>
         <ol>
             <li>Item one</li>
-            <li>Item two</li>
+            <li>Item tw2o</li>
         </ol>
     </div>
 );
 
 var user = {
     name: 'Bruno',
-    age: 23,
+    age: 18,
     location: 'Brazil'
 }
-var userName = 'Deko';
-var userAge = 23;
-var userLocation = 'Brazil';
+
+function getLocation(location){
+    if (location){
+        return <p>Location: {location}</p>;
+    }
+}
+
 var templateTwo = (
     <div>
-        <h1>{user.name}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {user.location}</p>
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
     </div>
 );
 

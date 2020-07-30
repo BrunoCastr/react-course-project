@@ -2,10 +2,15 @@
 
 console.log("App.js is running");
 
+// if statements
+// ternary operators
+// logical and operator
+
 // JSX - JavaScript XML
 var application = {
     title: 'Askaban',
-    subtitle: "You don't know nothing!"
+    subtitle: "You don't know nothing!",
+    options: ['One', 'Two']
 };
 
 var template = React.createElement(
@@ -16,10 +21,15 @@ var template = React.createElement(
         null,
         application.title
     ),
-    React.createElement(
+    application.subtitle && React.createElement(
         "p",
         null,
         application.subtitle
+    ),
+    React.createElement(
+        "p",
+        null,
+        application.options.length > 0 ? 'Here are your options' : 'No options'
     ),
     React.createElement(
         "ol",
@@ -32,39 +42,43 @@ var template = React.createElement(
         React.createElement(
             "li",
             null,
-            "Item two"
+            "Item tw2o"
         )
     )
 );
 
 var user = {
     name: 'Bruno',
-    age: 23,
+    age: 18,
     location: 'Brazil'
 };
-var userName = 'Deko';
-var userAge = 23;
-var userLocation = 'Brazil';
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            "p",
+            null,
+            "Location: ",
+            location
+        );
+    }
+}
+
 var templateTwo = React.createElement(
     "div",
     null,
     React.createElement(
         "h1",
         null,
-        user.name
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         "p",
         null,
         "Age: ",
         user.age
     ),
-    React.createElement(
-        "p",
-        null,
-        "Location: ",
-        user.location
-    )
+    getLocation(user.location)
 );
 
 //var template = React.createElement("p", {id: "id"}, "This is JSX from app.js!");
