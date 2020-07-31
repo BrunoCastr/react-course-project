@@ -70,41 +70,46 @@ var template = React.createElement(
 var count = 0;
 var addOne = function addOne() {
     count++;
-    console.log(count);
+    renderCounterApp();
 };
-var templateTwo = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        "Count: ",
-        count
-    ),
-    React.createElement(
-        "button",
-        { onClick: addOne },
-        "+1"
-    ),
-    React.createElement(
-        "button",
-        { onClick: function onClick() {
-                console.log('-1');
-            } },
-        "-1"
-    ),
-    React.createElement(
-        "button",
-        { onClick: function onClick() {
-                console.log('reset');
-            } },
-        "reset"
-    )
-);
-
-console.log(templateTwo);
 
 //var template = React.createElement("p", {id: "id"}, "This is JSX from app.js!");
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Count: ",
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: function onClick() {
+                    count++;renderCounterApp();
+                } },
+            "+1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: function onClick() {
+                    count--;renderCounterApp();
+                } },
+            "-1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: function onClick() {
+                    count = 0;renderCounterApp();
+                } },
+            "reset"
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();

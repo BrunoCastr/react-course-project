@@ -46,20 +46,24 @@ const template = (
 let count = 0;
 const addOne = () => {
     count++;
-    console.log(count);
+    renderCounterApp();
 };
-const templateTwo = (
-    <div>
-        <h1>Count: {count}</h1>
-        <button onClick={addOne}>+1</button>
-        <button onClick={() => {console.log('-1')}}>-1</button>
-        <button onClick={() => {console.log('reset')}}>reset</button>
-    </div>
-);
 
-console.log(templateTwo)
 
 //var template = React.createElement("p", {id: "id"}, "This is JSX from app.js!");
 const appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={() => {count++;renderCounterApp();}}>+1</button>
+            <button onClick={() => {count--;renderCounterApp();}}>-1</button>
+            <button onClick={() => {count = 0;renderCounterApp();}}>reset</button>
+        </div>
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
