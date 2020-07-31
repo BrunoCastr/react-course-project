@@ -1,41 +1,110 @@
-'use strict';
+"use strict";
 
-// arguments object - no longer bound with arrow functions
+console.log("App.js is running");
 
-var add = function add(a, b) {
-    //console.log(arguments);
-    return a + b;
-};
-console.log(add(55, 1, 1000));
+// if statements
+// ternary operators
+// logical and operator
 
-// this keyword - no longer bound
-
-var user = {
-    name: 'Andrew',
-    cities: ['Philadelphia', 'New York', 'Dublin'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-        //this.cities.forEach((city) => {
-        //     console.log(this.name + 'has live in ' + city);
-        //});
-    }
-};
-console.log(user.printPlacesLived());
-
-var multipler = {
-    numbers: [1, 2, 3, 4, 5, 6],
-    multiplyBy: 2,
-    multiplyer: function multiplyer() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return _this2.multiplyBy * number;
-        });
-    }
+// JSX - JavaScript XML
+var application = {
+    title: 'Askaban',
+    subtitle: "You don't know nothing!",
+    options: ['One', 'Two']
 };
 
-console.log(multipler.multiplyer());
+var template = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        application.title
+    ),
+    application.subtitle && React.createElement(
+        "p",
+        null,
+        application.subtitle
+    ),
+    React.createElement(
+        "p",
+        null,
+        application.options.length > 0 ? 'Here are your options' : 'No options'
+    ),
+    React.createElement(
+        "ol",
+        null,
+        React.createElement(
+            "li",
+            null,
+            "Item one"
+        ),
+        React.createElement(
+            "li",
+            null,
+            "Item tw2o"
+        )
+    )
+);
+
+//const user = {
+//    name: 'Bruno',
+//    age: 18,
+//    location: 'Brazil'
+//}
+
+//function getLocation(location){
+//  if (location){
+//        return <p>Location: {location}</p>;
+//    }
+//}
+
+//const templateTwo = (
+//    <div>
+//        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+//        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+//        {getLocation(user.location)}
+//    </div>
+//);
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    console.log(count);
+};
+var templateTwo = React.createElement(
+    "div",
+    null,
+    React.createElement(
+        "h1",
+        null,
+        "Count: ",
+        count
+    ),
+    React.createElement(
+        "button",
+        { onClick: addOne },
+        "+1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: function onClick() {
+                console.log('-1');
+            } },
+        "-1"
+    ),
+    React.createElement(
+        "button",
+        { onClick: function onClick() {
+                console.log('reset');
+            } },
+        "reset"
+    )
+);
+
+console.log(templateTwo);
+
+//var template = React.createElement("p", {id: "id"}, "This is JSX from app.js!");
+var appRoot = document.getElementById('app');
+
+ReactDOM.render(templateTwo, appRoot);
