@@ -52,7 +52,11 @@ var removeAll = function removeAll() {
 
 var appRoot = document.getElementById('app');
 
-var numbers = [55, 101, 1000];
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * application.options.length);
+    var option = application.options[randomNum];
+    alert(option);
+};
 
 var renderAppOption = function renderAppOption() {
     var template = React.createElement(
@@ -90,6 +94,16 @@ var renderAppOption = function renderAppOption() {
             })
         ),
         React.createElement(
+            "button",
+            { disabled: !application.options.length, onClick: onMakeDecision },
+            "What should I do?"
+        ),
+        React.createElement(
+            "button",
+            { onClick: removeAll },
+            "Remove all"
+        ),
+        React.createElement(
             "form",
             { onSubmit: onFormSubmit },
             React.createElement("input", { type: "text", name: "option" }),
@@ -97,11 +111,6 @@ var renderAppOption = function renderAppOption() {
                 "button",
                 null,
                 "Add option"
-            ),
-            React.createElement(
-                "button",
-                { onClick: removeAll },
-                "Remove all"
             )
         )
     );

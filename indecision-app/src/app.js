@@ -50,7 +50,11 @@ const removeAll = () => {
 
 const appRoot = document.getElementById('app');
 
-const numbers = [55,101,1000];
+const onMakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * application.options.length);
+    const option = application.options[randomNum];
+    alert(option);
+};
 
 const renderAppOption = () =>{
     const template = (
@@ -66,10 +70,12 @@ const renderAppOption = () =>{
                     })
                 }
             </ol>
+            <button disabled={!application.options.length} onClick={onMakeDecision}>What should I do?</button>
+            <button onClick={removeAll}>Remove all</button>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>
+
                 <button>Add option</button>
-                <button onClick={removeAll}>Remove all</button>
             </form>
         </div>
     );
