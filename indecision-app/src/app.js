@@ -8,7 +8,7 @@ console.log("App.js is running")
 const application = {
     title: 'Askaban',
     subtitle: "You don't know nothing!",
-    options: ['0']
+    options: []
 }
 
 const onFormSubmit = (e) => {
@@ -50,6 +50,8 @@ const removeAll = () => {
 
 const appRoot = document.getElementById('app');
 
+const numbers = [55,101,1000];
+
 const renderAppOption = () =>{
     const template = (
         <div>
@@ -58,8 +60,11 @@ const renderAppOption = () =>{
             <p>{(application.options.length) > 0 ? 'Here are your options' : 'No options'}</p>
             <p>{application.options.length}</p>
             <ol>
-                <li>Item one</li>
-                <li>Item tw2o</li>
+                {
+                    application.options.map((n) => {
+                        return <li key={n}>{n}</li>
+                    })
+                }
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>

@@ -10,7 +10,7 @@ console.log("App.js is running");
 var application = {
     title: 'Askaban',
     subtitle: "You don't know nothing!",
-    options: ['0']
+    options: []
 };
 
 var onFormSubmit = function onFormSubmit(e) {
@@ -52,6 +52,8 @@ var removeAll = function removeAll() {
 
 var appRoot = document.getElementById('app');
 
+var numbers = [55, 101, 1000];
+
 var renderAppOption = function renderAppOption() {
     var template = React.createElement(
         "div",
@@ -79,16 +81,13 @@ var renderAppOption = function renderAppOption() {
         React.createElement(
             "ol",
             null,
-            React.createElement(
-                "li",
-                null,
-                "Item one"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item tw2o"
-            )
+            application.options.map(function (n) {
+                return React.createElement(
+                    "li",
+                    { key: n },
+                    n
+                );
+            })
         ),
         React.createElement(
             "form",
