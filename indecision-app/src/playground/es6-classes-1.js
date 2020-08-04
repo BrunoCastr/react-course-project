@@ -8,14 +8,50 @@ class Person {
         return `Hi ${this.name} !`;
     }
     getDescription(){
-        return `${this.name} is ${this.age} year(s) old.`
+        return `${this.name} is ${this.age} year(s) old.`;
     }
 
 };
 
-const me = new Person('Andrew',24);
+class Studant extends Person {
+    constructor(name, age, major) {
+        super(name,age);
+        this.major = major;
+    }
 
-console.log(me.getDescription());
+    hasMajor(){
+        return !!this.major;
+    }
 
-const other = new Person();
+    getDescription(){
+        let description = super.getDescription();
+        if(this.hasMajor()){
+            description += ` Their major is ${this.major}`;
+        }
+        return description;
+    }
+}
+
+class Traveler extends Person {
+    constructor(name, age, homeLocation){
+        super(name, age);
+        this.homeLocation = homeLocation;
+    }
+
+
+
+    getGretting(){
+        let gretting = super.getGretting();
+        if(this.homeLocation){
+            gretting +=  ` I am visiting from ${this.homeLocation}`;
+        }
+        return gretting;
+    }
+};
+
+const me = new Traveler('Andrew',24, 'Miami');
+
+console.log(me.getGretting());
+
+const other = new Studant();
 console.log(other.getDescription());
