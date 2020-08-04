@@ -1,39 +1,41 @@
 'use strict';
 
-var detail = false;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var appRoot = document.getElementById('app');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var showDetails = function showDetails() {
-    detail = !detail;
-    renderAppOption();
-};
+var Person = function () {
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-var renderAppOption = function renderAppOption() {
-    var template = React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'h1',
-            null,
-            'Visibility Toggle'
-        ),
-        React.createElement(
-            'button',
-            { id: 'button', onClick: showDetails },
-            detail ? 'Hide details' : ' Show details'
-        ),
-        detail && React.createElement(
-            'div',
-            null,
-            React.createElement(
-                'p',
-                { id: 'detail' },
-                'Hey. These are some details you can now see!'
-            )
-        )
-    );
-    ReactDOM.render(template, appRoot);
-};
+        _classCallCheck(this, Person);
 
-renderAppOption();
+        this.name = name;
+        this.age = age;
+    }
+
+    _createClass(Person, [{
+        key: 'getGretting',
+        value: function getGretting() {
+            // return 'Hi, i am ' + this.name;
+            return 'Hi ' + this.name + ' !';
+        }
+    }, {
+        key: 'getDescription',
+        value: function getDescription() {
+            return this.name + ' is ' + this.age + ' year(s) old.';
+        }
+    }]);
+
+    return Person;
+}();
+
+;
+
+var me = new Person('Andrew', 24);
+
+console.log(me.getDescription());
+
+var other = new Person();
+console.log(other.getDescription());
