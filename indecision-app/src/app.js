@@ -74,7 +74,6 @@ const renderAppOption = () =>{
             <button onClick={removeAll}>Remove all</button>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>
-
                 <button>Add option</button>
             </form>
         </div>
@@ -82,5 +81,5 @@ const renderAppOption = () =>{
     ReactDOM.render(template,appRoot);
 };
 
-renderAppOption();
 
+renderAppOption();
