@@ -1,85 +1,48 @@
-console.log("App.js is running")
+class Header extends React.Component {
+    render(){
+        return (
+            <div>
+                <h1>Indecision</h1>
+                <h2>Put your life in the hands of a computer</h2>
+            </div>
+        );
+    }
+};
 
-// if statements
-// ternary operators
-// logical and operator
-
-// JSX - JavaScript XML
-const application = {
-    title: 'Askaban',
-    subtitle: "You don't know nothing!",
-    options: []
+class Action extends React.Component {
+    render(){
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        );
+    }
 }
 
-const onFormSubmit = (e) => {
-    e.preventDefault();
-    const option = e.target.elements.option.value;
-
-    if(option) {
-        application.options.push(option);
-        e.target.elements.option.value = '';
+class Option extends React.Component{
+    render(){
+        return(
+            <div>Options component here</div>
+        );
     }
+}
 
-    renderAppOption();
-};
+class AddOption extends React.Component {
+    render(){
+        return(
+            <input></input>
+        );
+    }
+}
 
-const removeAll = () => {
-    application.options = []; 
-    renderAppOption();
-} 
+const jsx = (
+    <div>
+        <h1>Title</h1>
+        <Header />
+        <Action />
+        <Option />
+        <AddOption />
+    </div>
+);
 
-//const user = {
-//    name: 'Bruno',
-//    age: 18,
-//    location: 'Brazil'
-//}
-
-//function getLocation(location){
-//  if (location){
-//        return <p>Location: {location}</p>;
-//    }
-//}
-
-//const templateTwo = (
-//    <div>
-//        <h1>{user.name ? user.name : 'Anonymous'}</h1>
-//        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-//        {getLocation(user.location)}
-//    </div>
-//);
-
-const appRoot = document.getElementById('app');
-
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * application.options.length);
-    const option = application.options[randomNum];
-    alert(option);
-};
-
-const renderAppOption = () =>{
-    const template = (
-        <div>
-            <h1>{application.title}</h1>
-            {application.subtitle && <p>{application.subtitle}</p>}
-            <p>{(application.options.length) > 0 ? 'Here are your options' : 'No options'}</p>
-            <p>{application.options.length}</p>
-            <ol>
-                {
-                    application.options.map((n) => {
-                        return <li key={n}>{n}</li>
-                    })
-                }
-            </ol>
-            <button disabled={!application.options.length} onClick={onMakeDecision}>What should I do?</button>
-            <button onClick={removeAll}>Remove all</button>
-            <form onSubmit={onFormSubmit}>
-                <input type="text" name="option"/>
-                <button>Add option</button>
-            </form>
-        </div>
-    );
-    ReactDOM.render(template,appRoot);
-};
-
-
-renderAppOption();
+ReactDOM.render(jsx, document.getElementById('app'));
