@@ -8,8 +8,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var counter = 0;
-
 var Counter = function (_React$Component) {
     _inherits(Counter, _React$Component);
 
@@ -21,23 +19,39 @@ var Counter = function (_React$Component) {
         _this.handleAddOne = _this.handleAddOne.bind(_this);
         _this.handleMinusOne = _this.handleMinusOne.bind(_this);
         _this.handleReset = _this.handleReset.bind(_this);
+        _this.state = {
+            count: 0,
+            name: 'Bruno'
+        };
         return _this;
     }
 
     _createClass(Counter, [{
         key: 'handleAddOne',
         value: function handleAddOne() {
-            counter++;
+            this.setState(function (prevState) {
+                return {
+                    count: prevState.count + 1
+                };
+            });
         }
     }, {
         key: 'handleMinusOne',
         value: function handleMinusOne() {
-            counter--;
+            this.setState(function (prevState) {
+                return {
+                    count: prevState.count - 1
+                };
+            });
         }
     }, {
         key: 'handleReset',
         value: function handleReset() {
-            counter = 0;
+            this.setState(function (p) {
+                return {
+                    count: 0
+                };
+            });
         }
     }, {
         key: 'render',
@@ -48,8 +62,13 @@ var Counter = function (_React$Component) {
                 React.createElement(
                     'h1',
                     null,
+                    this.state.name
+                ),
+                React.createElement(
+                    'h1',
+                    null,
                     'Count: ',
-                    counter
+                    this.state.count
                 ),
                 React.createElement(
                     'button',
